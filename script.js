@@ -59,3 +59,4 @@ document.getElementById("contactForm").addEventListener("submit", function (e) {
 document.getElementById("closePopup").addEventListener("click", function () {
     document.getElementById("popup").classList.remove("show");
 });
+

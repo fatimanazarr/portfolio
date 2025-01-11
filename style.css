@@ -4,6 +4,7 @@
     --primaryColor: #484E53;
     --secondaryColor: #8987A1;
     --light: white;
+    --cardColor: white;
 }
 
 .dark-theme {
@@ -11,6 +12,7 @@
     --primaryColor: #FFFFFF;
     --secondaryColor: #4FC3F7;
     --light: white;
+    --cardColor: #272727;
 }
 
 body {
@@ -106,6 +108,7 @@ body {
     max-width: 790px;
     margin-top: 10px;
     color: var(--primaryColor);
+    line-height: 1.6;
 }
 .hero button {
     border-radius: 40px;
@@ -119,7 +122,11 @@ body {
     font-size: 18px;
     margin-top: 45px;
 }
-
+.hero button:hover {
+    background-color: var(--primaryColor);
+    color: var(--light);
+    transition: 0.3s;
+}
 /********** ABOUT SECTION CSS **********/
 .about {
     display: flex;
@@ -168,6 +175,11 @@ body {
     font-size: 18px;
     margin-top: 45px;
 }
+.about button:hover {
+    background-color: var(--primaryColor);
+    color: var(--light);
+    transition: 0.3s;
+}
 /********** END OF ABOUT SECTION CSS **********/
 
 /********** SERVICES SECTION CSS **********/
@@ -210,7 +222,7 @@ body {
     width: 267px;
     height: 240px;
     text-align: left;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    background: var(--cardColor); /* Light gradient background */
     transition: transform 0.3s ease;
     color: var(--primaryColor);
     display: flex;
@@ -226,7 +238,6 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(121.9deg, rgba(28, 28, 28, 0.5) 0%, #050505 96.81%);
     mix-blend-mode: plus-lighter;
     z-index: 1;
 }
