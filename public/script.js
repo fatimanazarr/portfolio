@@ -2,14 +2,21 @@ import { getFirestore, collection, getDocs } from "https://www.gstatic.com/fireb
 
 // Initialize Firestore
 const db = getFirestore(app);
-async function fetchProjects() {
-    const projectsCollection = collection(db, 'Projects');
-    const projectSnapshot = await getDocs(projectsCollection);
-    const projectList = projectSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
-    renderProjects(projectList);
+// Fetch projects from Firestore
+async function fetchProjects() {
+    try {
+        const projectsCollection = collection(db, 'Projects');
+        const projectSnapshot = await getDocs(projectsCollection);
+        const projectList = projectSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+        renderProjects(projectList);
+    } catch (error) {
+        console.error("Error fetching projects: ", error);
+    }
 }
 
+// Render projects dynamically
 function renderProjects(projects) {
     const projectsContainer = document.querySelector('.projectsCards');
     projectsContainer.innerHTML = ''; // Clear existing projects
@@ -30,17 +37,6 @@ function renderProjects(projects) {
 document.addEventListener("DOMContentLoaded", function () {
     fetchProjects(); // Fetch projects when the page loads
 });
-async function fetchProjects() {
-    try {
-        const projectsCollection = collection(db, 'Projects');
-        const projectSnapshot = await getDocs(projectsCollection);
-        const projectList = projectSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-
-        renderProjects(projectList);
-    } catch (error) {
-        console.error("Error fetching projects: ", error);
-    }
-}
 var themeIcon = document.getElementById("themeicon");
         
 themeIcon.onclick = function () {
