@@ -1,3 +1,46 @@
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
+
+// Initialize Firestore
+const db = getFirestore(app);
+async function fetchProjects() {
+    const projectsCollection = collection(db, 'Projects');
+    const projectSnapshot = await getDocs(projectsCollection);
+    const projectList = projectSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+    renderProjects(projectList);
+}
+
+function renderProjects(projects) {
+    const projectsContainer = document.querySelector('.projectsCards');
+    projectsContainer.innerHTML = ''; // Clear existing projects
+
+    projects.forEach(project => {
+        const projectCard = `
+            <div class="projectCard" data-category="${project.ProjectCategory}">
+                <img src="${project.ProjectImage}" alt="${project.ProjectTitle}">
+                <h5>${project.ProjectTitle}</h5>
+                <p>${project.ProjectDescription}</p>
+            </div>
+        `;
+        projectsContainer.innerHTML += projectCard; // Append project card to container
+    });
+}
+
+// Call the fetch function when the document is loaded
+document.addEventListener("DOMContentLoaded", function () {
+    fetchProjects(); // Fetch projects when the page loads
+});
+async function fetchProjects() {
+    try {
+        const projectsCollection = collection(db, 'Projects');
+        const projectSnapshot = await getDocs(projectsCollection);
+        const projectList = projectSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+        renderProjects(projectList);
+    } catch (error) {
+        console.error("Error fetching projects: ", error);
+    }
+}
 var themeIcon = document.getElementById("themeicon");
         
 themeIcon.onclick = function () {
