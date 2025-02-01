@@ -1,44 +1,7 @@
-import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
 
-// Initialize Firestore
-const db = getFirestore(app);
 
-// Fetch projects from Firestore
-async function fetchProjects() {
-    try {
-        const projectsCollection = collection(db, 'Projects');
-        const projectSnapshot = await getDocs(projectsCollection);
-        const projectList = projectSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-
-        renderProjects(projectList);
-    } catch (error) {
-        console.error("Error fetching projects: ", error);
-    }
-}
-
-// Render projects dynamically
-function renderProjects(projects) {
-    const projectsContainer = document.querySelector('.projectsCards');
-    projectsContainer.innerHTML = ''; // Clear existing projects
-
-    projects.forEach(project => {
-        const projectCard = `
-            <div class="projectCard" data-category="${project.ProjectCategory}">
-                <img src="${project.ProjectImage}" alt="${project.ProjectTitle}">
-                <h5>${project.ProjectTitle}</h5>
-                <p>${project.ProjectDescription}</p>
-            </div>
-        `;
-        projectsContainer.innerHTML += projectCard; // Append project card to container
-    });
-}
-
-// Call the fetch function when the document is loaded
-document.addEventListener("DOMContentLoaded", function () {
-    fetchProjects(); // Fetch projects when the page loads
-});
+//function to create dark theme effect        
 var themeIcon = document.getElementById("themeicon");
-        
 themeIcon.onclick = function () {
     document.body.classList.toggle("dark-theme");
     
@@ -48,33 +11,72 @@ themeIcon.onclick = function () {
         themeIcon.src = "assets/moon.svg"; // Switch back to moon icon for dark mode
     }
 }
+
+//function to handle hamburger menu
 document.addEventListener("DOMContentLoaded", function () {
-    const categories = document.querySelectorAll(".categories ul li");
-    const projectCards = document.querySelectorAll(".projectCard");
+    function toggleMenu() {
+        let nav = document.getElementById("nav-links");
+        nav.classList.toggle("active");
+    }
 
-    categories.forEach(category => {
-        category.addEventListener("click", function () {
-            const selectedCategory = this.textContent.trim();
+    document.querySelector(".hamburger-menu").addEventListener("click", toggleMenu);
+});
 
-            // Remove 'active' class from all categories
-            categories.forEach(cat => cat.classList.remove("active"));
+//function to create a smooth scroll effect
+document.addEventListener("DOMContentLoaded", function () {
+    const links = document.querySelectorAll("#nav-links a");
 
-            // Add 'active' class to the clicked category
-            this.classList.add("active");
+    links.forEach(link => {
+        link.addEventListener("click", function (event) {
+            event.preventDefault(); // Prevent default anchor behavior
 
-            // Show/Hide projects based on category
-            projectCards.forEach(card => {
-                if (selectedCategory === "All" || card.dataset.category === selectedCategory) {
-                    card.style.display = "block"; // Show matching projects
-                } else {
-                    card.style.display = "none"; // Hide non-matching projects
-                }
-            });
+            const targetId = this.getAttribute("href").substring(1); // Get the ID (without #)
+            const targetSection = document.getElementById(targetId);
+
+            if (targetSection) {
+                window.scrollTo({
+                    top: targetSection.offsetTop - 50, // Adjust for navbar height if needed
+                    behavior: "smooth"
+                });
+            }
         });
     });
 });
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("hero-contact-btn").addEventListener("click", function () {
+        const aboutSection = document.getElementById("about");
 
+        if (aboutSection) {
+            const sectionPosition = aboutSection.getBoundingClientRect().top + window.scrollY;
+            const windowHeight = window.innerHeight;
+            const sectionHeight = aboutSection.offsetHeight;
 
+            // Calculate position to bring the section to the middle
+            const scrollToPosition = sectionPosition - (windowHeight / 2) + (sectionHeight / 2);
+
+            window.scrollTo({
+                top: scrollToPosition,
+                behavior: "smooth"
+            });
+        }
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Handle the Contact button click
+    document.querySelector(".navbar-button").addEventListener("click", function () {
+        const contactSection = document.getElementById("contact");
+        
+        if (contactSection) {
+            contactSection.scrollIntoView({
+                behavior: "smooth",
+                block: "start" // Scroll to the top of the section
+            });
+        }
+    });
+});
+
+//Handle form submition
 document.getElementById("contactForm").addEventListener("submit", function (e) {
     e.preventDefault(); // Prevents actual form submission
 
@@ -94,8 +96,8 @@ document.getElementById("contactForm").addEventListener("submit", function (e) {
     this.reset();
 });
 
+
 // Close popup when clicking the close button
 document.getElementById("closePopup").addEventListener("click", function () {
     document.getElementById("popup").classList.remove("show");
 });
-

@@ -9,18 +9,30 @@
 <body>
     <div class="navbar container">
         <h3>Fatimah Nazar</h3>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Projects</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Resume</a></li>
+    
+        <!-- Navigation Menu -->
+        <ul id="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#projects">Projects</a></li>
         </ul>
+    
         <button class="navbar-button">Contact</button>
+    
         <img src="assets/moon.svg" alt="DARK MODE ICON" id="themeicon">
+    
+        <!-- Hamburger Menu Icon -->
+        <div class="hamburger-menu" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
     </div>
+    
+    
 
-    <section class="hero-Section container">
+    <section id="home" class="hero-Section container">
         <div class="hero">
             <div class="avatar">
                 <img src="assets/avatar.png" alt="">
@@ -41,11 +53,11 @@
             <div class="intro">
                 <p>As a passionate Front-End Web Developer and UI/UX Designer, I specialize in creating intuitive, responsive websites that blend design with functionality, always focused on delivering seamless user experiences and innovative solutions.</p>
             </div>
-            <button>Contact Me</button>
+            <button id="hero-contact-btn">Contact Me</button>
         </div>
     </section>
 
-    <section class="about container">
+    <section id="about" class="about container">
         <div class="header">
             <h3>About Me</h3>
             <h4>Get To Know Me</h4>
@@ -61,7 +73,7 @@
         
     </section>
 
-    <section class="services container">
+    <section id="services" class="services container">
         <div class="header">
             <h3>What I Do</h3>
             <h4>My Services</h4>
@@ -81,69 +93,47 @@
     
             <div class="Card">
                 <img src="assets/serviceIcon.svg" alt="">
-                <h5>Web Animation</h5>
-                <p>Bringing websites to life with smooth, interactive animations using CSS, GSAP, and Lottie for an engaging user experience.</p>
+                <h5>Content Writing</h5>
+                <p>I write content that connects, engages, and converts—whether it's blog posts, website copy, or social media captions                </p>
             </div>
     
             <div class="Card">
                 <img src="assets/serviceIcon.svg" alt="">
-                <h5>Website Optimization</h5>
-                <p>Improving website speed, SEO, and performance to enhance user engagement and ensure fast loading times.</p>
+                <h5>Translation</h5>
+                <p>Bridging language gaps with fluent, accurate, and natural translations that sound just right!                </p>
             </div>
         </div>
     </section>
     
-    <section class="projects container">
+    <section id="projects" class="projects container">
         <div class="header">
             <h3>Projects</h3>
             <h4>Some of My Work</h4>
         </div>
-        <div class="categories">
-            <ul>
-                <li class="active">All</li> <!-- Added "All" as the first category -->
-                <li>Web Development</li>
-                <li>User interfaces</li>
-                <li>Content Writing</li>
-                <li>Translations</li>
-            </ul>
-        </div>
-        
+    
+    
         <div class="projectsCards">
-            <div class="projectCard" data-category="Web Development">
-                <img src="assets/1.png" alt="Project 1">
-                <h5>Project One</h5>
-                <p>A brief description of the project goes here. It highlights the purpose and key features.</p>
+            <div class="projectCard">
+                <img src="assets/baghtalia.png" alt="Project 1">
+                <h5><a id="project" target="_blank" href="https://www.behance.net/gallery/212402943/Baghtalia-website-case-study">Baghtalia</a></h5>
+                <p>My colleague and I designed and developed a website for an Iraqi restaurant serving Italian cuisine, blending modern Baghdadi vibes with a seamless user experience and a unique menu showcase.</p>
             </div>
-            <div class="projectCard" data-category="User interfaces">
-                <img src="assets/2.png" alt="Project 2">
-                <h5>Project Two</h5>
-                <p>A brief description of the project goes here. It highlights the purpose and key features.</p>
+            <div class="projectCard">
+                <img src="assets/Women.png" alt="Project 2">
+                <h5><a id="project" target="_blank" href="https://www.behance.net/gallery/212398741/Women-In-Tech-Mentorship-E-Learning-Platform">Women In Tech Mentorship</a></h5>
+                <p>My team and I designed and developed a website for Zain’s Women in Tech Mentorship program, focusing on an identity-driven design and seamless course access for Iraqi women.</p>
             </div>
-            <div class="projectCard" data-category="Content Writing">
-                <img src="assets/3.png" alt="Project 3">
-                <h5>Project Three</h5>
-                <p>A brief description of the project goes here. It highlights the purpose and key features.</p>
+            <div class="projectCard">
+                <img src="assets/Hareer.png" alt="Project 3">
+                <h5><a id="project" target="_blank" href="https://www.behance.net/gallery/217553959/UIUX-design-for-Hareer-Touch-Website">Hareer Touch e-commerce website</a></h5>
+                <p>I designed this website as a training project to enhance my UI/UX skills. It’s an e-commerce platform for Harir Touch, a leading Iraqi brand in body care products.</p>
             </div>
-            <div class="projectCard" data-category="Translations">
-                <img src="assets/3.png" alt="Project 4">
-                <h5>Project Four</h5>
-                <p>A brief description of the project goes here. It highlights the purpose and key features.</p>
-            </div>
-            <div class="projectCard" data-category="Web Development">
-                <img src="assets/1.png" alt="Project 1">
-                <h5>Project One</h5>
-                <p>A brief description of the project goes here. It highlights the purpose and key features.</p>
-            </div>
-            <div class="projectCard" data-category="User interfaces">
-                <img src="assets/2.png" alt="Project 2">
-                <h5>Project Two</h5>
-                <p>A brief description of the project goes here. It highlights the purpose and key features.</p>
-            </div>
+          
         </div>
-        
     </section>
+    
 
-    <section class="contact container">
+    <section id="contact" class="contact container">
         <div class="header">
             <h3>Get In Touch</h3>
             <h4>Let's Work Together</h4>
